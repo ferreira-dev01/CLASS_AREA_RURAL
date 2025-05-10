@@ -1,0 +1,2 @@
+MG_setores_CD2022.dbf filter=lfs diff=lfs merge=lfs -text
+MG_setores_CD2022.shp filter=lfs diff=lfs merge=lfs -text
