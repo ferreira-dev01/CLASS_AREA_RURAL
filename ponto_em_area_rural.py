@@ -3,13 +3,13 @@ import pandas as pd
 from shapely.geometry import Point
 
 
-# leitura do shapefile do IBGE que contem os setores rurais e urbanos
+# leitura do shapefile do IBGE que contem os setores rurais e urbanos em Minas Gerais
 #MAPAS SETORES RURAIS
-
 #https://www.ibge.gov.br/geociencias/downloads-geociencias.html?caminho=organizacao_do_territorio/malhas_territoriais/malhas_de_setores_censitarios__divisoes_intramunicipais/censo_2022/setores/shp/UF
 arquivo = r"./MG_setores_CD2022/MG_setores_CD2022.shp"
 
 setores_rurais = gpd.read_file(arquivo)
+
 #separa somente os poligonos dos setores rurais
 setores_rurais=setores_rurais[setores_rurais['SITUACAO'] == 'Rural']
 
@@ -17,7 +17,7 @@ setores_rurais=setores_rurais[setores_rurais['SITUACAO'] == 'Rural']
 dados_entrada= pd.read_csv('./dados_entrada.csv', sep=';')
 
 # cria uma coluna para indicar se um local está em área rural ou nao
-# sendo  1 para rural 0 para nao rural
+# sendo  1 para rural 0 para nao
 dados_entrada['RURAL'] = '0'
 dados_entrada=dados_entrada.fillna(0)# coloca 0 nas latitudes e longitudes que estão vazias
 
