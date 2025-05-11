@@ -32,3 +32,6 @@ Observação:
 O processamento pode demorar dependendo da quantidade de pontos a serem processados, pois
 a complexidade do processamento é O(n*m), onde n é a quantidade de pontos a serem processados e m
 a quantidade de setores censitários a serem processados.
+
+LINK DO EXECUTAVEL PARA WINDOWS COM INSTRUÇOS NO README.txt:
+https://drive.google.com/file/d/1xeL3f62kiaEEuEPgWFoYXfZYyeXIuzrO
