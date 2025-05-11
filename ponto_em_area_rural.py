@@ -1,20 +1,36 @@
 import geopandas as gpd
 import pandas as pd
 from shapely.geometry import Point
+import fiona
+from fiona import Feature, Geometry
 
 
 # leitura do shapefile do IBGE que contem os setores rurais e urbanos em Minas Gerais
 #MAPAS SETORES RURAIS
 #https://www.ibge.gov.br/geociencias/downloads-geociencias.html?caminho=organizacao_do_territorio/malhas_territoriais/malhas_de_setores_censitarios__divisoes_intramunicipais/censo_2022/setores/shp/UF
-arquivo = r"./MG_setores_CD2022/MG_setores_CD2022.shp"
+try:
+    arquivo = r"./MG_setores_CD2022/MG_setores_CD2022.shp"
+    setores_rurais = gpd.read_file(arquivo)
+except Exception as Argument:
 
-setores_rurais = gpd.read_file(arquivo)
+    f = open("errolog.txt", "a")
+    f.write(str(Argument))
+    f.close()
+
+
 
 #separa somente os poligonos dos setores rurais
 setores_rurais=setores_rurais[setores_rurais['SITUACAO'] == 'Rural']
 
 # ler dados de entrada que, OBRIGATORIAMENTE, devem ter as colunas COM NOMES: LATITUDE e LONGITUDE
-dados_entrada= pd.read_csv('./dados_entrada.csv', sep=';')
+try:
+    dados_entrada= pd.read_csv('./dados_entrada.csv', sep=';')
+except Exception as Argument:
+
+    f = open("errolog.txt", "a")
+    f.write(str(Argument))
+    f.close()
+
 
 # cria uma coluna para indicar se um local está em área rural ou nao
 # sendo  1 para rural 0 para nao
@@ -38,5 +54,12 @@ for index, linha in dados_entrada.iterrows():
                 break
 
 
-# salva o resultado em um novo arquivo CSV
-dados_entrada.to_csv('./dados_saida.csv', sep=';', index=False,encoding='utf-8')
+
+try:
+    # salva o resultado em um novo arquivo CSV
+    dados_entrada.to_csv('./dados_saida.csv', sep=';', index=False,encoding='utf-8')
+except Exception as Argument:
+
+    f = open("errolog.txt", "a")
+    f.write(str(Argument))
+    f.close()
