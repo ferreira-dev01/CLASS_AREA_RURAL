@@ -1,8 +1,7 @@
 import geopandas as gpd
 import pandas as pd
 from shapely.geometry import Point
-import os
-# os.add_dll_directory(r'/0DEV/PYTHON/CLASS_AREA_RURAL')
+
 
 # leitura do shapefile do IBGE que contem os setores rurais e urbanos
 #MAPAS SETORES RURAIS
